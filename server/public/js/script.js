@@ -18,11 +18,3 @@ form.addEventListener('submit', (e) =>{
         })
     })
 })
-
-
-/*
-fetch('http://localhost:3000/weather?address=lisboa').then( (responce) =>{
-    responce.json().then((data) =>{
-        console.log(data)
-    })
-})*/
