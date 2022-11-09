@@ -2,6 +2,9 @@ const path = require('path')
 const express = require('express')
 const hbs = require('hbs')
 
+const geocode = require('./utils/geocode')
+const forecast = require('./utils/forecast')
+
 const app = express()
 
 // Define PATH for express config
@@ -38,13 +41,46 @@ app.get('/help', (req, res) =>{
     })
 })
 
-
-// app.com
-
 app.get('/weather', (req, res) =>{
-    res.send('Weather page')
+    if(!req.query.address){
+        return res.send({
+            error: 'No address provided'
+        }) 
+    }
+    geocode(req.query.address, (error, data) => {
+        if (error){
+            return res.send({ error })
+        }
+        forecast(data, (error, forecastData) => {
+            if (error){
+                return res.send({ error })
+            }
+            res.send({
+                'address': req.query.address,
+                'forecast': forecastData
+            })
+        })
+    })
 })
 
+app.get('/help/*', (req, res) =>{
+    res.render('404', {
+        title: 'Help page',
+        name: 'Andrew',
+        errorMessage: 'Help page not found'
+    })
+})
+
+//404 Eror
+app.get('*', (req, res) =>{
+    res.render('404', {
+        title: 'Help page',
+        name: 'Andrew',
+        errorMessage: 'Page not found'
+    })
+})
+
+
 app.listen(3000, () => {
-    console.log('started')
+    console.log('Started on port: 3000')
 })

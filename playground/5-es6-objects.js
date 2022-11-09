@@ -25,7 +25,7 @@ const product = {
 // const {label:productLabel, stock, rating = 3} = product
 // console.log(productLabel, stock, rating)
 
-const transaction = (type, { label, stock }) => {
+const transaction = (type, { label, stock } = {}) => {
     console.log(type, label, stock)
 }
 
