@@ -1,8 +1,5 @@
 // CRUD 
 // C:/Users/USER/mongodb/bin/mongod.exe --dbpath=/Users/USER/mongodb-data
-// const mongodb = require('mongodb') 
-// const MongoClient = mongodb.MongoClient
-// const ObjectID = mongodb.ObjectId
 
 const {MongoClient, ObjectId } = require('mongodb')
 
