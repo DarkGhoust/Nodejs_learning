@@ -1,6 +1,10 @@
 // CRUD 
-const mongodb = require('mongodb') 
-const MongoClient = mongodb.MongoClient
+// C:/Users/USER/mongodb/bin/mongod.exe --dbpath=/Users/USER/mongodb-data
+// const mongodb = require('mongodb') 
+// const MongoClient = mongodb.MongoClient
+// const ObjectID = mongodb.ObjectId
+
+const {MongoClient, ObjectId } = require('mongodb')
 
 const connectionURL = 'mongodb://127.0.0.1:27017'
 const databaseName = 'task-manager'
@@ -12,8 +16,16 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
     
     const db = client.db(databaseName)
 
-    db.collection('users').insertOne({
-        name: 'Andrew',
-        age: 24
+    db.collection('tasks').deleteOne({
+        _id: new ObjectId("63736e56ddca75112d121b06")
+    }).then((result)=>{
+        console.log(result)
+    }).catch((err) =>{
+        console.log(err)
     })
+
+    db.collection('tasks').find({}).forEach((e)=>{
+        console.log(e)
+    })
+
 })
