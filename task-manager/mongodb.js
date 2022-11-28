@@ -1,6 +1,12 @@
 // CRUD 
 // C:/Users/USER/mongodb/bin/mongod.exe --dbpath=/Users/USER/mongodb-data
 
+
+// JWT_TOKEN_SECRET=wJQP8H4PYArP
+// PORT=3000
+// MONGODB_URL=mongodb://127.0.0.1:27017/task-manager-api
+// SENDGRID_API_KEY=ssadsadsadsa
+
 const {MongoClient, ObjectId } = require('mongodb')
 
 const connectionURL = process.env.MONGODB_URL
